@@ -1,0 +1,103 @@
+2- What’s Enum data type, when is it used? And name three common built_in enums used 
+frequently?  
+
+An Enum (short for Enumeration) is a distinct value type that allows you to create a set of named constants.
+ Instead of using "magic numbers" or strings to represent states,
+  you use descriptive names that make your code much easier to read and maintain.
+
+Under the hood, each name in an enum corresponds to an integral value (usually an int), starting from 0 by default.
+When is an Enum used?
+Enums are best used when a variable can only take one out of a small, fixed set of possible values.
+
+Improving Readability: if (order.Status == OrderStatus.Shipped) is much clearer than if (order.Status == 3).
+
+Type Safety: It prevents developers from passing invalid values (like a status of "99") to a method that only accepts specific categories.
+
+State Machines: Perfect for tracking the current state of a process (e.g., Pending, Active, Suspended, Deleted).
+
+Switch Statements: Enums work beautifully with switch expressions, ensuring you cover all possible cases.
+
+3 Common Built-in Enums in .NET
+
+1. System.DayOfWeek
+Used to represent the days of the week. This is commonly used with DateTime.Now.DayOfWeek.
+
+Values: Sunday, Monday, Tuesday, etc.
+
+2. System.ConsoleColor
+Used to change the foreground or background color of the text in a Console application.
+
+Values: Red, Green, Blue, White, Cyan, etc.
+
+3. System.Net.HttpStatusCode
+Used in web development (Web APIs) to represent the standard HTTP response codes.
+
+Values: OK (200), NotFound (404), InternalServerError (500), Unauthorized (401), etc.
+
+
+
+
+
+
+3- what are scenarios to use  string Vs StringBuilder? 
+
+choosing between string and StringBuilder usually comes down to one question: How many times are you planning to change the data?
+Use string when you have a fixed value or very few modifications.
+Fixed Data
+Small Concatenations
+Security & Thread Safety
+
+2. When to use StringBuilder
+Use StringBuilder when you are performing heavy manipulation in a loop or dealing with massive amounts of text.
+Large Loops
+Dynamic Document Generation
+Memory Efficiency
+
+
+
+---Bonus Questions
+
+5- what meant by user defined constructor and its role in initialization
+User-Defined Constructor is a special method you write within a class to control how an object is created.
+
+What is its Role in Initialization?
+The primary role of a constructor is to ensure that an object is in a valid state the moment it is born.
+
+Mandatory Data: You can force the creator of the object to provide essential information. For example, you can't have a "User" without a "Username."
+
+Setting Defaults: You can assign initial values to fields that shouldn't be null (like initializing a List<T>).
+
+Logic Execution: You can run startup logic, such as opening a database connection or calculating an initial value based on inputs. 
+
+
+6- compare between Array and Linked List
+
+System.Array (or List<T> which uses an array internally) 
+and
+LinkedList<T> are the two primary ways to store linear data, but they behave very differently in memory.
+
+1. Physical Structure
+Array: Stores elements in contiguous memory locations (side-by-side). If you have an array of 5 integers, they sit in one solid block of memory.
+
+Linked List: Stores elements in nodes scattered across memory. Each node contains the data and a "pointer" (reference) to the next node in the sequence.
+
+
+# Build results
+[Bb]in/
+[Ob]j/
+
+# User-specific files
+*.user
+*.userosscache
+*.sln.docuser
+
+# Visual Studio files
+.vs/
+
+# Build results - aggressive match
+bin/
+obj/
+[Bb]in/
+[Ob]j/
+**/bin/
+**/obj/

@@ -1,0 +1,63 @@
+Post Link : https://www.linkedin.com/posts/ali-ahmed515_csharp-dotnet-softwareengineering-activity-7423363772083490816-xKUV?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD7bpIYBdE-QS6K1VugLPUqm5vN0cv1NVbE
+Post : 
+    اجهز عشان هنشرح الـ String Immutability والـ StringBuilder بس بالحب كده.
+
+
+
+عارف يعني إيه String Immutability؟
+
+كلمة Immutability يعني "عدم القابلية للتغيير". في C#، الـ string ده عامل زي الكلمة اللي بتطلع من بوقك، مابترجعش تاني.
+
+ليه بقي علشان الـ String شغال بـ Fixed Size Array (Contiguous memory) من جوه عبارة عن ReadOnly Span أو Array من الـ Chars لـ CLR بيحجز له حتة في Memory على قده بالظبط.
+
+إيه اللي بيحصل في الكواليس؟
+
+
+
+لما بتعرف string x = "Cairo"; وبعدين تقول له x += " Tower"; إنت فاكر إنك غيرت في نفس المكان؟ تؤ تؤ.. عيب عليك. الـ CLR بيعمل الآتي:
+
+بيسيب "Cairo" زي ما هي مركونة في Memory (لو حد تاني مستخدمها).
+
+بيروح يحجز مكان جديد خالص يسع "Cairo Tower".
+
+يخلي الـ x تشاور على المكان الجديد.
+
+
+
+ليه اللفة دي يا هندسة؟
+
+Thread Safety: عشان لو فيه اتنين "ثريدز" شغالين على نفس النص، محدش يغيره من تحت رجل التاني ويحصل كارثة.
+
+String Interning: الـ C# بيحاول يوفر، فلو عندك 100 متغير فيهم كلمة "Hello"، هو بيخزن نسخة واحدة بس في الـ Pool ويخلي الكل يشاور عليها. لو كانت بتتغير، كان نص الكود ضرب في النص التاني!
+
+
+
+هنا بيظهر "الوحش" المرن: StringBuilder
+
+
+
+لما تلاقي نفسك هتعمل Loop بتجمع فيها 10,000 كلمة، أوعى تستخدم الـ string العادي، وإلا الميموري عندك هتصوت و الـ Garbage Collector هييجي يديك "باللي في رجله". هنا بنستخدم الـ StringBuilder.
+
+هو شغال إزاي؟
+
+الـ StringBuilder مش "ناشف". هو بيحجز Buffer (مساحة فاضية) وبيعدل فيها براحته من غير ما يفضل يكريت كائنات جديدة كل شوية.
+
+
+
+(The Linked List Implementation): في نسخ .NET الحديثة، الـ StringBuilder مابقاش مجرد Array بتكبر وخلاص.. لا، هو شغال بنظام Chunks (كتل). لما المساحة اللي معاه بتخلص، مش بيروح ينقل الداتا كلها لمكان جديد (عشان ده مجهود وتضييع وقت)، هو ببساطة بيكريه Chunk جديدة ويوصلها بالقديمة.. يعني شغال بنظام Backward Linked List.
+
+لما بتنادي ToString() علي StringBuilder، هو بيكريت String واحد بالمساحة الكلية (Total Length) ويمشي على الـ Chunks يملى منها.
+
+
+
+✅ سرعة طيارة: مش بيحتاج ينسخ الداتا القديمة. ✅ كفاءة Memory : بيستغل المساحات الفاضية بذكاء .
+
+
+
+الميموري أمانة في رقبتك يا هندسة، حافظ عليها...! 
+
+#CSharp #DotNet #SoftwareEngineering #CleanCode #MemoryManagement #ProgrammingTips #StringBuilder #EgyptDevelopers
+
+
+
+
