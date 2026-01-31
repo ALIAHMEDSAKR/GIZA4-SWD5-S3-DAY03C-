@@ -1,0 +1,19 @@
+# Build results
+[Bb]in/
+[Ob]j/
+
+# User-specific files
+*.user
+*.userosscache
+*.sln.docuser
+
+# Visual Studio files
+.vs/
+
+# Build results - aggressive match
+bin/
+obj/
+[Bb]in/
+[Ob]j/
+**/bin/
+**/obj/
